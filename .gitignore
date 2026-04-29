@@ -1,0 +1,41 @@
+# Unreal generated folders
+Project1Together/Binaries/
+Project1Together/DerivedDataCache/
+Project1Together/Intermediate/
+Project1Together/Saved/
+
+# Generated plugin folders
+Project1Together/Plugins/*/Binaries/
+Project1Together/Plugins/*/Intermediate/
+Project1Together/Plugins/*/Saved/
+Project1Together/Plugins/*/DerivedDataCache/
+
+# IDE/editor folders
+Project1Together/.vs/
+Project1Together/.vscode/
+Project1Together/.idea/
+.vs/
+.vscode/
+.idea/
+
+# Visual Studio generated files
+Project1Together/*.sln
+Project1Together/*.suo
+Project1Together/*.user
+Project1Together/*.userosscache
+Project1Together/*.sdf
+Project1Together/*.opensdf
+Project1Together/*.VC.db
+Project1Together/*.VC.VC.opendb
+Project1Together/ipch/
+
+# Logs/temp
+Project1Together/*.log
+Project1Together/*.tmp
+Project1Together/*.temp
+Project1Together/*.bak
+Project1Together/*.backup
+
+# OS files
+.DS_Store
+Thumbs.db

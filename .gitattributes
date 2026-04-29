@@ -1,0 +1,30 @@
+# Text normalization
+* text=auto
+
+*.cpp text eol=lf
+*.h text eol=lf
+*.cs text eol=lf
+*.ini text eol=lf
+*.uproject text eol=lf
+*.uplugin text eol=lf
+*.md text eol=lf
+
+# Unreal binary assets
+*.uasset binary
+*.umap binary
+*.ubulk binary
+*.uexp binary
+*.uptnl binary
+
+# Common binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.tga binary
+*.psd binary
+*.fbx binary
+*.wav binary
+*.mp3 binary
+*.mp4 binary
+*.zip binary
+*.7z binary
