@@ -20,8 +20,10 @@ void AMyActor::BeginPlay()
 	
 	for (int32 i = 0; i < 10; i++)
 	{
-		bool CanMove = FMath::RandBool();
-		if (CanMove)
+		// bool CanMove = FMath::RandBool();
+		int32 CanMove = FMath::Rand();
+		
+		if (CanMove & 1)
 		{
 			TriggerEvent(i);
 		}
