@@ -23,14 +23,14 @@ void PotionShopUI::HandleInput(GameState& gameState)
         switch (input)
         {
         case '1':
-            workshop.ShowAllRecipes();
+            potionWorkshop.ShowAllRecipes();
             break;
         case '2':
         {
             std::string potionName;
             std::cout << "Search potion name: ";
             std::getline(std::cin >> std::ws, potionName);
-            workshop.SearchByName(potionName);
+            potionWorkshop.SearchByName(potionName);
             break;
         }
         case '3':
@@ -38,7 +38,7 @@ void PotionShopUI::HandleInput(GameState& gameState)
             std::string ingredientName;
             std::cout << "Search ingredient: ";
             std::getline(std::cin >> std::ws, ingredientName);
-            workshop.SearchByIngredient(ingredientName);
+            potionWorkshop.SearchByIngredient(ingredientName);
             break;
         }
         case '0':

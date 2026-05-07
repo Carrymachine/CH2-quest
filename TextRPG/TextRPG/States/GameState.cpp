@@ -8,8 +8,10 @@
 #include "PotionShopUI/PotionShopUI.h"
 #include "Town/TownUI.h"
 
-GameState::GameState()
+GameState::GameState(int HPPotionCount, int MPPotionCount)
 {
+    initialHPPotionCount = HPPotionCount;
+    initialMPPotionCount = MPPotionCount;
     InitUI();
 }
 
@@ -26,7 +28,7 @@ UIState GameState::GetPrevState()
 {
     return prevUIState;
 }
-
+ 
 void GameState::SetState(UIState newState)
 {
     currentState = newState;
@@ -38,7 +40,7 @@ void GameState::SetState(UIState newState)
 
         if (battleUI && dungeonUI)
         {
-            battleUI->EnterBattle(dungeonUI->GetDungeonStepCount());
+            battleUI->EnterBattle(dungeonUI->GetCurrentFloor());
         }
     }
 }

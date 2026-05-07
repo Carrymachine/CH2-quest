@@ -4,6 +4,7 @@
 class Boss : public EnemyClass
 {
     std::string className = "Boss";
+    int expReward = 60;
 
 public:
     Stat SetBaseStat() const override
@@ -26,5 +27,10 @@ public:
     ItemID DropItem() const override
     {
         return ItemID::MisticShard;
+    }
+
+    int GetExpReward() const override
+    {
+        return expReward;
     }
 };

@@ -1,15 +1,17 @@
 #include "Enemy.h"
 
-Enemy::Enemy()
+#include <iostream>
+
+Monster::Monster()
 {
 }
 
-Enemy::~Enemy()
+Monster::~Monster()
 {
 }
 
 
-void Enemy::ShowStatus() const
+void Monster::ShowStatus() const
 {
     const Stat& stat = GetStat();
     std::cout << "Name: " << enemy->GetClassName() << std::endl;
@@ -19,7 +21,17 @@ void Enemy::ShowStatus() const
     std::cout << "DEF: " << stat.stat[Stat::DEF] << std::endl;
 }
 
-ItemID Enemy::DropItem()
+std::string Monster::GetMonsterName() const
+{
+    if (!enemy)
+    {
+        return "Monster";
+    }
+
+    return enemy->GetClassName();
+}
+
+ItemID Monster::DropItem()
 {
     if (!enemy)
     {
@@ -27,4 +39,14 @@ ItemID Enemy::DropItem()
     }
 
     return enemy->DropItem();
+}
+
+int Monster::GetExpReward() const
+{
+    if (!enemy)
+    {
+        return 0;
+    }
+
+    return enemy->GetExpReward();
 }

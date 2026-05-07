@@ -1,8 +1,10 @@
 C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\Alchemy\AlchemyWorkshop.cpp;C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\x64\Debug\AlchemyWorkshop.obj
 C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\Actor\Actor.cpp;C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\x64\Debug\Actor.obj
 C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\Actor\Character\Character.cpp;C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\x64\Debug\Character.obj
+C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\Actor\Character\Job\Archer.cpp;C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\x64\Debug\Archer.obj
 C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\Actor\Character\Job\Job.cpp;C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\x64\Debug\Job.obj
 C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\Actor\Character\Job\Mage.cpp;C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\x64\Debug\Mage.obj
+C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\Actor\Character\Job\Thief.cpp;C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\x64\Debug\Thief.obj
 C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\Actor\Character\Job\Warrior.cpp;C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\x64\Debug\Warrior.obj
 C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\Actor\Enemy\Boss.cpp;C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\x64\Debug\Boss.obj
 C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\Actor\Enemy\Enemy.cpp;C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\x64\Debug\Enemy.obj

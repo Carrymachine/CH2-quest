@@ -13,17 +13,31 @@ DungeonUI::~DungeonUI()
 
 void DungeonUI::SetRandomizeEventState(GameState& gameState)
 {
-    dungeonStepCount++;
+    if (currentFloor == BOSS_FLOOR)
+    {
+        gameState.dungeonEventState = DungeonEvent::EncounterEnemy;
+        gameState.SetState(UIState::Battle);
+        return;
+    }
+
+    currentFloorStep++;
+
+    if (currentFloorStep >= STEPS_PER_FLOOR)
+    {
+        currentFloor++;
+        currentFloorStep = 0;
+        gameState.dungeonEventState = DungeonEvent::Nothing;
+        return;
+    }
+
     // 하드웨어 기반 난수 시드 생성
     static std::random_device rd;
     // mt19937 = 난수엔진
     // 메르센 트위스터 알고리즘
     // gen() > 생성
     static std::mt19937 gen(rd());
-    // 균등 분포 정수 생성기
-    // dist() > 범위 지정 > 0 ~ 2 사이 정수
-    static std::uniform_real_distribution<> dist(0, 2);
-
+    // 0 ~ 2 사이 정수 생성
+    static std::uniform_int_distribution<int> dist(0, 2);
 
     gameState.dungeonEventState = static_cast<DungeonEvent>(dist(gen));
     if (gameState.dungeonEventState == DungeonEvent::EncounterEnemy) gameState.SetState(UIState::Battle);
@@ -61,9 +75,11 @@ void DungeonUI::HandleInput(GameState& gameState)
         {
         case '1':
             // open treasure
+            gameState.dungeonEventState = DungeonEvent::Nothing;
             break;
         case '2':
             // skip
+            gameState.dungeonEventState = DungeonEvent::Nothing;
             break;
         }
     }
@@ -76,7 +92,16 @@ void DungeonUI::RenderUI() const
 void DungeonUI::RenderUI(const GameState* gameState) const
 {
     std::cout << "\n=====  Event  =====\n";
-    std::cout << dungeonStepCount;
+    std::cout << "Floor: " << currentFloor << "\n";
+
+    if (currentFloor <= NORMAL_FLOOR_COUNT)
+    {
+        std::cout << "Step: " << currentFloorStep << " / " << STEPS_PER_FLOOR << "\n";
+    }
+    else
+    {
+        std::cout << "Boss Floor\n";
+    }
 
     switch (gameState->dungeonEventState)
     {
@@ -98,7 +123,14 @@ void DungeonUI::RenderUI(const GameState* gameState) const
     }
 
     std::cout << "\n===== Dungeon =====\n";
-    std::cout << "1. Move\n";
+    if (currentFloor == BOSS_FLOOR)
+    {
+        std::cout << "1. Enter Boss Battle\n";
+    }
+    else
+    {
+        std::cout << "1. Move\n";
+    }
     std::cout << "2. Inventory\n";
     std::cout << "0. Back to Town\n";
     std::cout << "Input: ";

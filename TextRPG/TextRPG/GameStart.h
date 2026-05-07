@@ -1,3 +1,3 @@
 ﻿#pragma once
 
-void GameStart();
+void GameStart(int HPPotion, int MPPotion);

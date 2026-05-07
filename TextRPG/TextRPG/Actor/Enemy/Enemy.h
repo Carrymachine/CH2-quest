@@ -1,16 +1,18 @@
-﻿#pragma once
+#pragma once
+#include <memory>
+#include <string>
+
 #include "EnemyClass.h"
 #include "Actor/Actor.h"
-#include "Actor/Character/Character.h"
 #include "_dic/ItemDropTable.h"
 
-class Enemy : public Actor
+class Monster : public Actor
 {
     std::unique_ptr<EnemyClass> enemy;
 
 public:
-    Enemy();
-    ~Enemy();
+    Monster();
+    ~Monster();
 
     ActorType actorType = ActorType::Enemy;
 
@@ -25,5 +27,9 @@ public:
     }
 
     void ShowStatus() const;
+    std::string GetMonsterName() const;
     ItemID DropItem();
+    int GetExpReward() const;
 };
+
+using Enemy = Monster;

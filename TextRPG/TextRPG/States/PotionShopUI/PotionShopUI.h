@@ -4,7 +4,7 @@
 
 class PotionShopUI : public BaseUI
 {
-    AlchemyWorkshop workshop;
+    PotionWorkshop potionWorkshop;
 
 public:
     PotionShopUI();

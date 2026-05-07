@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-AlchemyWorkshop::AlchemyWorkshop()
+PotionWorkshop::PotionWorkshop()
 {
     recipes.push_back({
         "HP Potion",
@@ -29,7 +29,7 @@ AlchemyWorkshop::AlchemyWorkshop()
         });
 }
 
-void AlchemyWorkshop::ShowAllRecipes() const
+void PotionWorkshop::ShowAllRecipes() const
 {
     for (const PotionRecipe& recipe : recipes)
     {
@@ -37,7 +37,7 @@ void AlchemyWorkshop::ShowAllRecipes() const
     }
 }
 
-void AlchemyWorkshop::SearchByName(const std::string& name) const
+void PotionWorkshop::SearchByName(const std::string& name) const
 {
     for (const PotionRecipe& recipe : recipes)
     {
@@ -51,7 +51,7 @@ void AlchemyWorkshop::SearchByName(const std::string& name) const
     std::cout << "찾을 수 없습니다" << std::endl;
 }
 
-void AlchemyWorkshop::SearchByIngredient(const std::string& ingredient) const
+void PotionWorkshop::SearchByIngredient(const std::string& ingredient) const
 {
     int foundCount = 0;
 

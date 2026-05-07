@@ -2,10 +2,10 @@
 #include "GameStart.h"
 #include "States/GameState.h"
 
-void GameStart()
+void GameStart(int HPPotion, int MPPotion)
 {
-    GameState gameManager;
-    while (true)
+    GameState gameManager(HPPotion, MPPotion);
+    while (gameManager.IsRunning())
     {
         gameManager.UIRenderer();
         gameManager.handleInput();

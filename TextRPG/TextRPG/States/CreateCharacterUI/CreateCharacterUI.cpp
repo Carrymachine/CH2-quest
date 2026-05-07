@@ -1,7 +1,10 @@
-﻿#include "CreateCharacterUI.h"
+#include "CreateCharacterUI.h"
+
 #include <iostream>
 
+#include "Actor/Character/Job/Archer.h"
 #include "Actor/Character/Job/Mage.h"
+#include "Actor/Character/Job/Thief.h"
 #include "Actor/Character/Job/Warrior.h"
 
 namespace
@@ -15,17 +18,18 @@ namespace
         std::cout << "============================================\n";
     }
 
-    void RunCharacterUpgradeMenu(Character* character)
+    void RunCharacterUpgradeMenu(Character* character, int HPPotionCount, int MPPotionCount)
     {
         if (character == nullptr)
         {
             return;
         }
 
-        character->AddItemToInventory(ItemID::HPPotion, 5);
-        character->AddItemToInventory(ItemID::MPPotion, 5);
+        character->AddItemToInventory(ItemID::HPPotion, HPPotionCount);
+        character->AddItemToInventory(ItemID::MPPotion, MPPotionCount);
 
-        std::cout << "* You received 5 HP Potions and 5 MP Potions.\n";
+        std::cout << "* You received " << HPPotionCount << " HP Potions and "
+            << MPPotionCount << " MP Potions.\n";
         PrintCharacterUpgradeMenu();
 
         bool isGameStart = false;
@@ -83,7 +87,6 @@ namespace
     }
 }
 
-
 CreateCharacterUI::CreateCharacterUI()
 {
 }
@@ -109,24 +112,28 @@ void CreateCharacterUI::HandleInput(GameState& gameState)
         char input;
         std::cin >> input;
 
-        auto character = std::make_unique<Character>();
+        std::unique_ptr<Character> character;
 
         switch (input)
         {
         case '1':
-            character->SetName(tempName);
-            character->SetJob(std::make_unique<Warrior>());
-            gameState.SetPlayerCharacter(std::move(character));
+            character = std::make_unique<Warrior>();
             break;
         case '2':
-            character->SetName(tempName);
-            character->SetJob(std::make_unique<Mage>());
-            gameState.SetPlayerCharacter(std::move(character));
+            character = std::make_unique<Mage>();
+            break;
+        case '3':
+            character = std::make_unique<Archer>();
+            break;
+        case '4':
+            character = std::make_unique<Thief>();
             break;
         default:
             return;
         }
 
+        character->SetName(tempName);
+        gameState.SetPlayerCharacter(std::move(character));
         currentStep++;
         return;
     }
@@ -147,10 +154,24 @@ void CreateCharacterUI::HandleInput(GameState& gameState)
         int atk, def;
         std::cin >> atk >> def;
 
+        if (atk < 5)
+        {
+            atk = 5;
+        }
+
+        if (def < 5)
+        {
+            def = 5;
+        }
+
         gameState.GetPlayerCharacter()->stat.stat[Stat::ATK] = atk;
         gameState.GetPlayerCharacter()->stat.stat[Stat::DEF] = def;
 
-        RunCharacterUpgradeMenu(gameState.GetPlayerCharacter());
+        RunCharacterUpgradeMenu(
+            gameState.GetPlayerCharacter(),
+            gameState.GetInitialHPPotionCount(),
+            gameState.GetInitialMPPotionCount()
+        );
         currentStep = 0;
         gameState.SetState(UIState::Town);
     }

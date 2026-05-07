@@ -12,4 +12,5 @@ public:
     virtual Stat SetBaseStat() const = 0;
     virtual std::string GetClassName() const = 0;
     virtual ItemID DropItem() const = 0;
+    virtual int GetExpReward() const = 0;
 };

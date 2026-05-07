@@ -4,12 +4,12 @@
 
 #include "PotionRecipe.h"
 
-class AlchemyWorkshop
+class PotionWorkshop
 {
     std::vector<PotionRecipe> recipes;
 
 public:
-    AlchemyWorkshop();
+    PotionWorkshop();
 
     void ShowAllRecipes() const;
     void SearchByName(const std::string& name) const;

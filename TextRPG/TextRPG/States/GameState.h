@@ -17,9 +17,12 @@ class GameState
     UIState prevUIState;
     UIState currentState = UIState::CreateCharacterUI;
     std::map<UIState, std::unique_ptr<BaseUI>> uiMap;
+    int initialHPPotionCount = 0;
+    int initialMPPotionCount = 0;
+    bool isRunning = true;
 
 public:
-    GameState();
+    GameState(int HPPotionCount = 0, int MPPotionCount = 0);
     ~GameState();
 
     std::unique_ptr<Character> playerCharacter;
@@ -36,6 +39,10 @@ public:
 
     Character* GetPlayerCharacter() { return playerCharacter.get(); }
     const Character* GetPlayerCharacter() const { return playerCharacter.get(); }
+    int GetInitialHPPotionCount() const { return initialHPPotionCount; }
+    int GetInitialMPPotionCount() const { return initialMPPotionCount; }
+    bool IsRunning() const { return isRunning; }
+    void EndGame() { isRunning = false; }
 
     void InitUI();
     void UIRenderer();

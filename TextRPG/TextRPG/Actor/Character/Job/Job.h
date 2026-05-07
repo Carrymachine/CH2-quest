@@ -5,7 +5,7 @@
 
 #include "Actor/Stat.h"
 
-enum class JobState { Warrior, Mage };
+enum class JobState { Warrior, Mage, Archer, Thief };
 
 class Job
 {

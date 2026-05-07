@@ -5,7 +5,7 @@
 
 BattleUI::BattleUI()
 {
-    EnterBattle(0);
+    EnterBattle(1);
 }
 
 BattleUI::~BattleUI()
@@ -20,18 +20,30 @@ void BattleUI::HandleInput(GameState& gameState)
     switch (input)
     {
     case '1':
-        gameState.playerCharacter->Attack(*gameState.playerCharacter, *enemy);
+        gameState.playerCharacter->attack(enemy.get());
 
         if (enemy->stat.stat[Stat::HP] <= 0)
         {
             const ItemID dropItem = enemy->DropItem();
+            const int expReward = enemy->GetExpReward();
             gameState.playerCharacter->AddItemToInventory(dropItem);
+            gameState.playerCharacter->GainExp(expReward);
 
             const auto itemName = ItemDropTable::ItemNameTable.find(dropItem);
 
             if (itemName != ItemDropTable::ItemNameTable.end())
             {
                 std::cout << "Dropped item: " << itemName->second << std::endl;
+            }
+
+            if (battleFloor >= 4)
+            {
+                std::cout << "\n===== Game Clear =====\n";
+                std::cout << "You cleared Floor 4!\n";
+                std::cout << "\n===== Final Character Status =====\n";
+                gameState.playerCharacter->ShowStatus();
+                gameState.EndGame();
+                return;
             }
 
             enemy.reset();
@@ -75,11 +87,12 @@ void BattleUI::RenderUI(const GameState* gameState) const
 }
 
 
-void BattleUI::EnterBattle(int dungeonStepCount)
+void BattleUI::EnterBattle(int currentFloor)
 {
+    battleFloor = currentFloor;
     enemy = std::make_unique<Enemy>();
 
-    if (dungeonStepCount >= 6)
+    if (currentFloor >= 4)
     {
         enemy->SetEnemyStat(std::make_unique<Boss>());
         return;

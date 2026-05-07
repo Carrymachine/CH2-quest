@@ -1,33 +1,69 @@
-﻿#include "Character.h"
+#include "Character.h"
 
 #include <iostream>
 #include <ostream>
 
-Character::Character()
+Player::Player()
 {
 }
 
-Character::~Character()
+Player::~Player()
 {
 }
 
-void Character::SetName(std::string newName)
+void Player::SetName(std::string newName)
 {
     name = newName;
 }
 
-void Character::ShowStatus() const
+void Player::printPlayerStatus() const
 {
     const Stat& stat = GetStat();
     std::cout << "Name: " << name << std::endl;
-    std::cout << "Player Job: " << characterJob->GetJobName() << std::endl;
+    std::cout << "Player Job: " << GetJobName() << std::endl;
+    std::cout << "Level: " << level << std::endl;
+    std::cout << "EXP: " << exp << " / " << maxExp << std::endl;
     std::cout << "HP: " << stat.stat[Stat::HP] << std::endl;
     std::cout << "MP: " << stat.stat[Stat::MP] << std::endl;
     std::cout << "ATK: " << stat.stat[Stat::ATK] << std::endl;
     std::cout << "DEF: " << stat.stat[Stat::DEF] << std::endl;
 }
 
-void Character::AddItemToInventory(ItemID item, int count)
+void Player::ShowStatus() const
+{
+    printPlayerStatus();
+}
+
+void Player::GainExp(int amount)
+{
+    if (amount <= 0)
+    {
+        return;
+    }
+
+    exp += amount;
+    std::cout << "Gained EXP: " << amount << std::endl;
+
+    if (exp >= maxExp)
+    {
+        LevelUp();
+    }
+}
+
+void Player::LevelUp()
+{
+    level++;
+    stat.stat[Stat::HP] += 10;
+    stat.stat[Stat::MP] += 5;
+    stat.stat[Stat::ATK] += 2;
+    stat.stat[Stat::DEF] += 2;
+    exp = 0;
+    maxExp += 50;
+
+    std::cout << "Level Up! Current Level: " << level << std::endl;
+}
+
+void Player::AddItemToInventory(ItemID item, int count)
 {
     if (count <= 0)
     {
@@ -37,7 +73,7 @@ void Character::AddItemToInventory(ItemID item, int count)
     inventory[item] += count;
 }
 
-bool Character::RemoveItemFromInventory(ItemID item)
+bool Player::RemoveItemFromInventory(ItemID item)
 {
     const auto it = inventory.find(item);
 
@@ -56,7 +92,7 @@ bool Character::RemoveItemFromInventory(ItemID item)
     return true;
 }
 
-int Character::GetItemCount(ItemID item) const
+int Player::GetItemCount(ItemID item) const
 {
     const auto it = inventory.find(item);
 
@@ -68,7 +104,7 @@ int Character::GetItemCount(ItemID item) const
     return it->second;
 }
 
-void Character::ShowInventory() const
+void Player::ShowInventory() const
 {
     if (inventory.empty())
     {

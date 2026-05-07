@@ -1,24 +1,10 @@
-﻿#pragma once
-#include "Job.h"
+#pragma once
+#include "Actor/Character/Character.h"
 
-class Mage : public Job
+class Mage : public Player
 {
-    std::string jobName = "Mage";
-
-    Stat SetBaseStat() const override
-    {
-        Stat stat;
-
-        stat.stat[Stat::HP] = 0;
-        stat.stat[Stat::MP] = 0;
-        stat.stat[Stat::ATK] = 0;
-        stat.stat[Stat::DEF] = 0;
-
-        return stat;
-    }
-
-    std::string GetJobName() const override
-    {
-        return jobName;
-    }
+public:
+    Mage();
+    std::string GetJobName() const override;
+    void attack(Monster* monster) override;
 };

@@ -8,6 +8,7 @@
 class BattleUI : public BaseUI
 {
     std::unique_ptr<Enemy> enemy;
+    int battleFloor = 1;
 
 public:
     BattleUI();
@@ -18,5 +19,5 @@ public:
     void RenderUI() const override;
     void RenderUI(const GameState* gameState) const override;
 
-    void EnterBattle(int dungeonStepCount);
+    void EnterBattle(int currentFloor);
 };

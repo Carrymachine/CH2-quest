@@ -7,6 +7,7 @@
 class Normal : public EnemyClass
 {
     std::string className = "Normal";
+    int expReward = 30;
 
 public:
     Stat SetBaseStat() const override
@@ -33,5 +34,10 @@ public:
         static std::uniform_int_distribution<int> dist(0, 1);
 
         return dist(gen) == 0 ? ItemID::Slimeball : ItemID::Bone;
+    }
+
+    int GetExpReward() const override
+    {
+        return expReward;
     }
 };

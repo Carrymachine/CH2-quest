@@ -236,8 +236,10 @@
             <AdditionalIncludeDirectories>C:\Users\jay\Desktop\unreal\Quest\TextRPG\TextRPG\</AdditionalIncludeDirectories>
             <LinkCompiled>true</LinkCompiled>
         </ClCompile>
+        <ClCompile Include="Actor\Character\Job\Archer.cpp"/>
         <ClCompile Include="Actor\Character\Job\Job.cpp"/>
         <ClCompile Include="Actor\Character\Job\Mage.cpp"/>
+        <ClCompile Include="Actor\Character\Job\Thief.cpp"/>
         <ClCompile Include="Actor\Character\Job\Warrior.cpp"/>
         <ClCompile Include="Actor\Enemy\Boss.cpp">
             <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
@@ -566,8 +568,10 @@
         <ClInclude Include="Alchemy\PotionRecipe.h"/>
         <ClInclude Include="Actor\Actor.h"/>
         <ClInclude Include="Actor\Character\Character.h"/>
+        <ClInclude Include="Actor\Character\Job\Archer.h"/>
         <ClInclude Include="Actor\Character\Job\Job.h"/>
         <ClInclude Include="Actor\Character\Job\Mage.h"/>
+        <ClInclude Include="Actor\Character\Job\Thief.h"/>
         <ClInclude Include="Actor\Character\Job\Warrior.h"/>
         <ClInclude Include="Actor\Enemy\Boss.h"/>
         <ClInclude Include="Actor\Enemy\Enemy.h"/>

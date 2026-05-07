@@ -6,14 +6,13 @@
 class CreateCharacterUI : public BaseUI
 {
     const std::vector<std::string> steps = {
-        "What is your name? \n Input: ", "What is your job(class)? \n 1. Warrior \n 2. Mage \n Input: "
+        "What is your name? \n Input: ", "What is your job(class)? \n 1. Warrior \n 2. Mage \n 3. Archer \n 4. Thief \n Input: "
         , "Enter HP and MP: ", "Enter ATK and DEF: "
 
     };
     int currentStep = 0;
 
     std::string tempName;
-    JobState tempJobName;
 
 public:
     CreateCharacterUI();
